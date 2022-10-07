@@ -1,0 +1,43 @@
+ .main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    background-color: #f8f9fb;
+
+    @import './components/contact-list.scss';  
+    
+    .home-chat {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: rgba(0,0,0,0.45);
+        gap: 10px;
+
+        .chat-image{
+            img{
+                width: 240px;
+                height: 240px;
+                border-radius: 5px;
+                object-fit: contain;
+            }
+        }
+
+        .context{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            span {
+                font-size: 32px;
+                color: #525252;
+                
+            }
+        }
+    }
+
+    @import './components/chat-box.scss';   
+}

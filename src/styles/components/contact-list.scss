@@ -1,0 +1,109 @@
+.contact-list-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    flex: 1.6;
+
+    .author-profile-info{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #ededed;
+        padding: 10px;
+
+        .author-image{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .search-container{
+        background-color: #f6f6f6;
+        padding: 10px;
+
+        .search{
+            display: flex;
+            flex-direction: row;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 5px 10px;
+
+            .search-icon{
+                width: 28px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+            .search-input{
+                width: 100%;
+                font-size: 15px;
+                input[name="search-text"] {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                }
+
+            }
+        }
+    }
+
+    .users-contact-lists{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #ffffff;
+        border-bottom: 1px solid #f2f2f2;
+        cursor: pointer;
+        padding: 15px 12px;
+        :hover{
+            background-color: #ebebeb;
+        }
+
+        .user-image {
+            display: flex;
+            img {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+            }
+        }
+
+        .contact-info{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0px 12px;
+
+            .user-name{
+                width: 100%;
+                font-size: 16px;
+                color: #000000;
+            }
+            
+            .message-text{
+                width: 100%;
+                font-size: 13px;
+                margin-top: 3px;
+                color : rgba(0,0,0,0.8);
+            }
+        }
+        .last-message-time{
+            font-size: 12px;
+            margin-right: 12px;
+            color: rgba(0,0,0,0.45);
+            white-space: nowrap;
+        }
+    }
+}

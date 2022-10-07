@@ -1,0 +1,94 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 3;
+    background-color: #f6f7f8;
+
+    .user-profile-header{
+        display: flex;
+        flex-direction: row;
+        background-color: #ededed;
+        padding: 10px;
+        align-items: center;
+        gap: 10px;
+
+        .user-image {
+            display: flex;
+            img {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+        }
+
+        .user-name{
+            width: 100%;
+            font-size: 16px;
+            color: #000000;
+        }
+    }
+
+    .message-container{
+        display: flex;
+        flex-direction: column;
+        background-color: #e5ddd6;
+        height: 100%;    
+        overflow-y: auto;
+        
+        .message-body-holder{
+            display: flex;
+            justify-content: var(--message-aligment);
+            margin: 5px 15px;
+
+            .message{
+                max-width: 50%;
+                background-color: var(--background-color);
+                color: #303030;
+                padding: 8px 10px;
+                font-size: 14px;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .chat-footer{
+        display: flex;
+        background-color: #f6f7f8;
+        padding: 10px;
+        align-items: center;
+        bottom: 0px;
+        .chat-footer-body{
+            background-color: #f6f6f6;
+            padding: 10px;
+            width: 100%;
+
+            .chat-input-holder{
+                display: flex;
+                flex-direction: row;
+                background-color: #ffffff;
+                border-radius: 16px;
+                padding: 5px 10px;
+
+                .emoji-container{
+                    width: 28px;
+                    height: 28px;
+                    opacity: 0.5;
+                }
+
+                .chat-input{
+                    width: 100%;
+                    font-size: 15px;
+                    margin-left: 10px;
+
+                    input[name="message-text"]{
+                        outline: none;
+                        border: none;
+                        width: 100%;
+                    }
+                }
+
+            }
+        }
+    }
+}

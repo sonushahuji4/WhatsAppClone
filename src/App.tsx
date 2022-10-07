@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './styles/App.scss';
+import ContactList from './components/contactList';
+import ChatBox from './components/chatBox';
+import homePageImge from '../src/static/images/homepage.jpeg';
+import { messagesList } from './mockData';
 
-function App() {
+const App = () => {
+  const [selectedChat, setSelectedChat] = useState<any>([]);
+
+  const getSelectedChat = (id: number) => {
+    setSelectedChat(messagesList)
+  }
+
+  const getChatHolder = () => {
+    return (
+      <div className='home-chat'>
+        <div className='chat-image'>
+          <img src={homePageImge} alt="Imgae Not Found"></img>
+        </div>
+        <div className='context'>
+          <span>Keep your phone connected</span><br />
+          <p>WhatsApp connects to your phone to sync messages.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main-container">
+      <ContactList getSelectedChat={getSelectedChat} />
+      {
+        selectedChat.length ? <ChatBox/> : getChatHolder()   
+      }
     </div>
   );
 }
