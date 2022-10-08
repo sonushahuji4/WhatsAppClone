@@ -2,18 +2,21 @@ import authorImage from '../static/images/author.jpg';
 import searchIcon from '../static/images/searchIcon.svg';
 import userImage from '../static/images/markZakarburk.jpg';
 import { contactList } from '../mockData';
+import { useContext } from 'react';
+import { GlobalStateContext } from '../context/GlobalContextProvider';
 
 
 interface Prpos {
     getSelectedChat : (id: number) => void;
 }
 const ContactList = ({getSelectedChat}: Prpos) => {
+    const stateContext: any = useContext(GlobalStateContext);
 
     const getAuthorInfo = () => {
         return (
             <div className='author-profile-info'>  
                 <div className='author-image'>
-                    <img src={authorImage} alt="Img Not Found"></img>
+                    <img src={stateContext.authorDetails.picture} alt="Img Not Found"></img>
                 </div>
             </div>
         );
