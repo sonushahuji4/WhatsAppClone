@@ -2,11 +2,13 @@ import * as actions from './actions';
 
 export const initialState = {
     authorDetails : {
-        authorId : null,
+        userId : null,
         name : null,
         email : null,
+        email_verified : false,
         picture: null
-    }
+    },
+    usersContactList : []
 };
 
 export const reducer = (state: any, action: any) => {
@@ -14,12 +16,13 @@ export const reducer = (state: any, action: any) => {
         case actions.AUTHOR_DETAILS:
             return {
                 ...state,
-                authorDetails:{
-                    authorId : action.payload.authorId,
-                    name : action.payload.name,
-                    email : action.payload.email,
-                    picture: action.payload.picture
-                }
+                authorDetails:action.payload.user,
+                usersContactList: action.payload.userList
+        }
+        case actions.USERS_LIST:
+            return {
+                ...state,
+                usersContactList: action.payload
             }
         default: {
             return state;

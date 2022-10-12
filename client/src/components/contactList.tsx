@@ -1,16 +1,13 @@
-import authorImage from '../static/images/author.jpg';
 import searchIcon from '../static/images/searchIcon.svg';
-import userImage from '../static/images/markZakarburk.jpg';
-import { contactList } from '../mockData';
 import { useContext } from 'react';
 import { GlobalStateContext } from '../context/GlobalContextProvider';
-
 
 interface Prpos {
     getSelectedChat : (id: number) => void;
 }
 const ContactList = ({getSelectedChat}: Prpos) => {
     const stateContext: any = useContext(GlobalStateContext);
+
 
     const getAuthorInfo = () => {
         return (
@@ -41,15 +38,15 @@ const ContactList = ({getSelectedChat}: Prpos) => {
         return (
               contactList.map((item: any) => {
                 return (
-                <div className='users-contact-lists' onClick={(event) => {getSelectedChat(item.id)}} key={item.id}>
+                <div className='users-contact-lists' key={item.userId} onClick={(event) => {getSelectedChat(item.userId)}}>
                     <div className='user-image'>
-                        <img src={userImage} alt="Img Not Found"></img>
+                        <img src={item.picture} alt="Img Not Found"></img>
                     </div>
                     <div className='contact-info'>
                         <div className='user-name'>{item.name}</div>
-                        <div className='message-text'>{item.lastText}</div>
+                        <div className='message-text'>{item?.lastText}</div>
                     </div>
-                    <div className='last-message-time'>{item.lastTextTime}</div>
+                    <div className='last-message-time'>{item?.lastTextTime}</div>
                 </div>);
             })
         );
@@ -59,7 +56,7 @@ const ContactList = ({getSelectedChat}: Prpos) => {
         <div className='contact-list-container'> 
             {getAuthorInfo()}
             {getSearchBar()}
-            {getContactList(contactList)}
+            {getContactList(stateContext.usersContactList)}
         </div>
     );
 }

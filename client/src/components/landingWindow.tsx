@@ -1,32 +1,11 @@
-import React, { useContext } from "react";
 import whatsappIcon from "../static/images/whatsappIcon.svg";
 import qrCode from "../static/images/qrcode.jpg";
-import { GlobalStateContext, GlobalDispatchContext } from '../context/GlobalContextProvider';
-import * as actions from '../context/actions';
 import { GoogleLogin } from "@react-oauth/google";
-import jwt_decode from "jwt-decode";
 import * as constants from "../constants/contant";
+import useUser from '../hooks/useUser';
 
 const LandingWindow = () => {
-    const stateContext: any = useContext(GlobalStateContext);
-    const dispatch: any = useContext(GlobalDispatchContext);
-
-    const onLoginSuccess = (res: any) => {
-        const decodeCredential: any = jwt_decode(res.credential)
-        dispatch({
-            type : actions.AUTHOR_DETAILS,
-            payload : {
-                authorId : decodeCredential.sub,
-                name : decodeCredential.name,
-                email : decodeCredential.email,
-                picture: decodeCredential.picture
-            }
-        })
-    }
-
-    const onLoginError = () => {
-        console.log("error");
-    }
+    const { onLoginSuccess, onLoginError} = useUser();
 
     return (
         <div className="landing-window-container">

@@ -38,7 +38,7 @@ const App = () => {
   }
 
   const getComponent = () => {
-    if(stateContext.authorDetails?.authorId && stateContext.authorDetails?.email){
+    if(stateContext.authorDetails?.userId && stateContext.authorDetails?.email){
       return (
         <>
           <ContactList getSelectedChat={getSelectedChat} />

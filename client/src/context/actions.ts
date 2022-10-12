@@ -1,1 +1,2 @@
 export const AUTHOR_DETAILS = 'AUTHOR_DETAILS';
+export const USERS_LIST = 'USERS_LIST';
