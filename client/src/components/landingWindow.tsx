@@ -3,9 +3,13 @@ import qrCode from "../static/images/qrcode.jpg";
 import { GoogleLogin } from "@react-oauth/google";
 import * as constants from "../constants/contant";
 import useUser from '../hooks/useUser';
+import { Socket } from "socket.io-client";
 
-const LandingWindow = () => {
-    const { onLoginSuccess, onLoginError} = useUser();
+interface Props {
+    socket : Socket;
+}
+const LandingWindow = ({socket}: Props) => {
+    const { onLoginSuccess, onLoginError} = useUser(socket);
 
     return (
         <div className="landing-window-container">

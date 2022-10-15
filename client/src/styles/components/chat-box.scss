@@ -1,11 +1,11 @@
-.chat-container {
+.conversation-container {
     display: flex;
     flex-direction: column;
     height: 100%;
     flex: 3;
     background-color: #f6f7f8;
 
-    .user-profile-header{
+    .conversation-header{
         display: flex;
         flex-direction: row;
         background-color: #ededed;
@@ -29,7 +29,7 @@
         }
     }
 
-    .message-container{
+    .conversation-body{
         display: flex;
         flex-direction: column;
         background-color: #e5ddd6;
@@ -52,7 +52,7 @@
         }
     }
 
-    .chat-footer{
+    .conversation-footer{
         display: flex;
         background-color: #f6f7f8;
         padding: 10px;

@@ -8,7 +8,8 @@ export const initialState = {
         email_verified : false,
         picture: null
     },
-    usersContactList : []
+    usersContactList : [],
+    chatHistory : [],
 };
 
 export const reducer = (state: any, action: any) => {
@@ -24,6 +25,16 @@ export const reducer = (state: any, action: any) => {
                 ...state,
                 usersContactList: action.payload
             }
+        case actions.CHAT_HISTORY:
+            return {
+                ...state,
+                chatHistory: action.payload
+            }
+        // case actions.UPDATE_CHAT_HISTORY:
+        //     return {
+        //         ...state,
+        //         chatHistory: 
+        //     }
         default: {
             return state;
         }

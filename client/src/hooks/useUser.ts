@@ -4,8 +4,9 @@ import { GlobalDispatchContext } from '../context/GlobalContextProvider';
 import * as actions from '../context/actions';
 import jwt_decode from "jwt-decode";
 import { user } from '../models/user';
+import { Socket } from'socket.io-client';
 
-const useUser = () => {
+const useUser = (socket: Socket) => {
     const dispatch: any = useContext(GlobalDispatchContext);
 
     const onLoginSuccess = async (res: any) => {
@@ -20,6 +21,7 @@ const useUser = () => {
             } 
 
             const [user, userList]: any = await APIServices.addUser(userObj);
+
             dispatch({
                 type : actions.AUTHOR_DETAILS,
                 payload : {

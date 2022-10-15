@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { user } from '../models/user';
+import { chatsIDs, user } from '../models/user';
 // import dotenv from 'dotenv';
 // dotenv.config()
 
@@ -20,6 +20,7 @@ export class APIServices {
 
         } catch (error: any) {
             console.log('Error while calling addUser API : ',error.message);
+            throw error;
         }
     }
 
@@ -32,6 +33,21 @@ export class APIServices {
             return result.data;
         } catch (error: any) {
             console.log('Error while calling getUsers API : ',error.message);
+            throw error;
+        }
+    }
+
+    public static getChatHistory = async (params: chatsIDs) => {
+        try {
+            const result = await axios.post(`${this.URL}/getChats`, params);
+            if(result.status != 200 || !result.data){
+                throw ('Error while calling getUsers API');
+            }
+            return result.data;
+        } catch (error: any) {
+            console.log('Error while fetching user conversation API : ',error);
+            throw error;
+            
         }
     }
 }

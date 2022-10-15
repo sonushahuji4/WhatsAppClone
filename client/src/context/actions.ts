@@ -1,2 +1,4 @@
 export const AUTHOR_DETAILS = 'AUTHOR_DETAILS';
 export const USERS_LIST = 'USERS_LIST';
+export const CHAT_HISTORY = 'CHAT_HISTORY';
+export const UPDATE_CHAT_HISTORY = 'UPDATE_CHAT_HISTORY';
