@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { AddUserController } from './controllers/addUserController';
 import { IUser } from './models/user';
 import * as Http from 'http-status-codes';
+import { MessageController } from './controllers/messageController';
 
 export class App {
 
@@ -55,4 +56,29 @@ export class App {
         }
     }   
 
+    public static getChatHistory = async (req: Request, res: Response) => {
+        try {
+            const messageController = new MessageController();
+            const chatHistory : any = await messageController.getChatHistory(req);
+            res.status(Http.OK).send(chatHistory);
+        } catch (error) {
+            if((error instanceof Error)){
+                console.log(error.message);
+                return res.status(Http.BAD_REQUEST).json({
+                    message : error.message,
+                    responseCode : Http.BAD_REQUEST
+                });
+            } else {
+                console.log(error);
+                return res.status(Http.INTERNAL_SERVER_ERROR).json({
+                    message : error,
+                    responseCode : Http.INTERNAL_SERVER_ERROR
+                });
+            }
+        }
+    }
+
+    public static addChats = async (req: Request, res: Response) => {
+        
+    }
 }
