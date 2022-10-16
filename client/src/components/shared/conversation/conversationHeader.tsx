@@ -11,7 +11,7 @@ const ConversationHeader = ({selectedUser} : Props): JSX.Element => {
             </div>
             <div>
                 <div className='user-name'>{selectedUser.name}</div>  
-                <div className="status-off-on-lin">{'online'}</div> 
+                <div className="status-off-on-lin">{null}</div> 
             </div>
         </div>
     );

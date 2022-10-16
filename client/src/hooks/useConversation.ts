@@ -9,9 +9,9 @@ const useConversation = (socket: Socket) => {
     const [currentMessage, setCurrnetMessage] = useState<any>('');
 
     /** Send request to server to store message in database */
-    const sendMessage = (event:React.KeyboardEvent<HTMLInputElement>, props: user) => {
-        const keyCode: number = event.keyCode || event.which;
-        if(currentMessage !== '' && keyCode === 13){
+    const sendMessage = (event:any, props: user, isButtonClicked: boolean) => {
+        const keyCode: number = event?.keyCode || event?.which;
+        if((currentMessage !== '' && keyCode === 13) || (currentMessage !=='' && isButtonClicked)){
             setCurrnetMessage('');
             const message: message = {
                 senderId : stateContext.authorDetails.userId,

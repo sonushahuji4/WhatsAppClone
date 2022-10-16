@@ -5,7 +5,7 @@ interface Props {
     selectedUser : user
     currentMessage : string;
     setCurrnetMessage: any;
-    sendMessage: (event: React.KeyboardEvent<HTMLInputElement>, selectedUser: user) => void;
+    sendMessage: (event: React.KeyboardEvent<HTMLInputElement> | React.MouseEvent<HTMLButtonElement>, selectedUser: user, status: boolean) => void;
 }
 
 const ConversationFooter = ({selectedUser, currentMessage, setCurrnetMessage, sendMessage} : Props): JSX.Element => {
@@ -23,7 +23,10 @@ const ConversationFooter = ({selectedUser, currentMessage, setCurrnetMessage, se
                             value={currentMessage}
                             placeholder='Type a message' 
                             onChange={(e)=> setCurrnetMessage(e.target.value)}
-                            onKeyPress={(event) => {sendMessage(event,selectedUser)}}/>
+                            onKeyPress={(event) => {sendMessage(event,selectedUser, false)}}/>
+                    </div>
+                    <div className='send-btn'>
+                        <button onClick={(event) => {sendMessage(event,selectedUser, true)}}>&#9658;</button>
                     </div>
                 </div>
             </div>
