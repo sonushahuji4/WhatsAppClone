@@ -13,16 +13,16 @@ const useContact = (socket: Socket) => {
     const [chatHistory, setChatHistory] = useState([]);
 
     const onContactSelect = async (props: user) => {
-        if(props.userId !== privousSelectedUser?.senderId){
+        if(props.userId !== privousSelectedUser?.receiverId){
             const iDs: chatsIDs = {
                 senderId : stateContext.authorDetails.userId,
                 receiverId : props.userId,
             };
-            WebSocket.unSubscribe(socket,privousSelectedUser);
             setPrivousSelectedUser(iDs);
+            setSelectedUser(props);
+            WebSocket.unSubscribe(socket,privousSelectedUser);
             /** Fetch chat history for the selected user from the server */
             WebSocket.subscribe(socket,iDs);
-            setSelectedUser(props);
         }   
     }
 
