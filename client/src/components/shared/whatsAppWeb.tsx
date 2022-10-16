@@ -1,4 +1,4 @@
-import homePageImge from '../../../src/static/images/homepage.jpeg';
+import homePageImge from '../../../src/static/images/chatCopyImage.jpg';
 
 const WhatsAppWeb = () => {
     return (
@@ -7,8 +7,9 @@ const WhatsAppWeb = () => {
             <img src={homePageImge} alt="Imgae Not Found"></img>
           </div>
           <div className='context'>
-            <span>Keep your phone connected</span><br />
-            <p>WhatsApp connects to your phone to sync messages.</p>
+            <span>WhatsApp Web</span><br />
+            <p>Send and receive messages without keeping your phone online.<br />
+            Use WhatsApp on up to 4 linked devices and 1 phone at the same time.</p>
           </div>
         </div>
       );

@@ -36,18 +36,4 @@ export class APIServices {
             throw error;
         }
     }
-
-    public static getChatHistory = async (params: chatsIDs) => {
-        try {
-            const result = await axios.post(`${this.URL}/getChats`, params);
-            if(result.status != 200 || !result.data){
-                throw ('Error while calling getUsers API');
-            }
-            return result.data;
-        } catch (error: any) {
-            console.log('Error while fetching user conversation API : ',error);
-            throw error;
-            
-        }
-    }
 }

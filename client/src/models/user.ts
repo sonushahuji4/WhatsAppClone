@@ -11,3 +11,9 @@ export interface chatsIDs {
     senderId : string;
     receiverId : string;
 }
+
+export interface message {
+    senderId : string;
+    receiverId : string;
+    msg : any;
+}

@@ -6,22 +6,21 @@ import LandingWindow from './components/landingWindow';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import useContact from './hooks/useContact';
 import { io, Socket} from 'socket.io-client';
-import { GlobalDispatchContext, GlobalStateContext } from './context/GlobalContextProvider';
+import { GlobalStateContext } from './context/GlobalContextProvider';
 import { SOCKET_STRINGS } from './constants/contant';
 import WhatsAppWeb from './components/shared/whatsAppWeb';
+import { message } from './models/user';
 
 const App = () => {
   const clientId = '894720398292-60h39t5cbgnk1ens4p7p21mtgrb3fmk9.apps.googleusercontent.com';
   const socket: Socket = io('http://localhost:3001/',{ transports: ['websocket']});
   const stateContext: any = useContext(GlobalStateContext);
-  const dispatch: any = useContext(GlobalDispatchContext);
   const {selectedUser, onContactSelect, chatHistory, setChatHistory}: any = useContact(socket);
 
   useEffect(() => {
     if(socket){
-        socket.on(SOCKET_STRINGS.ACKNOWLEDMENT, (mess: any) => {
-            setChatHistory((list: any[]): any[] => [...list, mess]);
-            console.log("sendMessage: ",mess);
+        socket.on(SOCKET_STRINGS.ACKNOWLEDMENT, (msg: message) => {
+            setChatHistory((list: message[]): message[] => [...list, msg]);
         })
     }
   },[socket]);
@@ -29,19 +28,26 @@ const App = () => {
   const getComponent = () => {
     if(stateContext.authorDetails?.userId && stateContext.authorDetails?.email){
       return (
-        <>
-          <ContactList 
-            onContactSelect={onContactSelect}/>
-          { 
-            Object.keys(selectedUser).length ? 
-                <Conversation 
-                  selectedUser={selectedUser} 
-                  socket={socket} 
-                  chatHistory={chatHistory}/> 
-              : 
-                <WhatsAppWeb /> 
-          }
-        </>
+        <div className='container'>
+            <div className='container-header'>
+
+            </div>
+            <div className='container-body'>
+              <div className='container-holder'>
+                <ContactList 
+                  onContactSelect={onContactSelect}/>
+                { 
+                  Object.keys(selectedUser).length ? 
+                      <Conversation 
+                        selectedUser={selectedUser} 
+                        socket={socket} 
+                        chatHistory={chatHistory}/> 
+                    : 
+                      <WhatsAppWeb /> 
+                }
+              </div>
+            </div>
+        </div>
       )
     }
     return (

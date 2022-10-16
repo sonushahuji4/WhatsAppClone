@@ -16,17 +16,19 @@ const ConversationBody = ({authorId, chatHistory} : Props): JSX.Element => {
     });
 
     return (
-        <div className='conversation-body' key="conversation-body" ref={scrollToBottom}>
-            {
-                chatHistory.map((item: any, index: number) => {
-                    const messageAligment = item.senderId === authorId;
-                    return (
-                        <div key={`${index} + aligment`} className='message-body-holder' style={{["--message-aligment" as string]: messageAligment ? "flex-end" : "flex-start"}}>
-                        <div key={`${index} + color`} className='message'style={{["--background-color" as string]: messageAligment ? "#daf8cb" : "#ffffff"}}>{item.msg}</div>
-                    </div>
-                    );
-                })
-            }
+        <div className='conversation-holder'>
+            <div className='conversation-body' key="conversation-body" ref={scrollToBottom}>
+                {
+                    chatHistory.map((item: any, index: number) => {
+                        const messageAligment = item.senderId === authorId;
+                        return (
+                            <div key={`${index} + aligment`} className='message-body-holder' style={{["--message-aligment" as string]: messageAligment ? "flex-end" : "flex-start"}}>
+                            <div key={`${index} + color`} className='message'style={{["--background-color" as string]: messageAligment ? "#daf8cb" : "#ffffff"}}>{item.msg}</div>
+                        </div>
+                        );
+                    })
+                }
+            </div>
         </div>
     );
 }

@@ -8,7 +8,7 @@
     .conversation-header{
         display: flex;
         flex-direction: row;
-        background-color: #ededed;
+        background-color: #f0f2f5;
         padding: 10px;
         align-items: center;
         gap: 10px;
@@ -29,25 +29,28 @@
         }
     }
 
-    .conversation-body{
-        display: flex;
-        flex-direction: column;
-        background-color: #e5ddd6;
-        height: 100%;    
-        overflow-y: auto;
-        
-        .message-body-holder{
+    .conversation-holder {
+        overflow: auto;
+        .conversation-body{
             display: flex;
-            justify-content: var(--message-aligment);
-            margin: 5px 15px;
-
-            .message{
-                max-width: 50%;
-                background-color: var(--background-color);
-                color: #303030;
-                padding: 8px 10px;
-                font-size: 14px;
-                border-radius: 5px;
+            flex-direction: column;
+            background-color: #e5ddd6;
+            height: 100%;    
+            overflow-y: auto;
+            
+            .message-body-holder{
+                display: flex;
+                justify-content: var(--message-aligment);
+                margin: 5px 15px;
+    
+                .message{
+                    max-width: 50%;
+                    background-color: var(--background-color);
+                    color: #303030;
+                    padding: 8px 10px;
+                    font-size: 14px;
+                    border-radius: 5px;
+                }
             }
         }
     }
@@ -59,7 +62,7 @@
         align-items: center;
         bottom: 0px;
         .chat-footer-body{
-            background-color: #f6f6f6;
+            background-color: #f0f2f5;
             padding: 10px;
             width: 100%;
 

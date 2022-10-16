@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { chatsIDs, user } from "../models/user";
-import { APIServices } from "../services/apiServices";
-import { GlobalDispatchContext, GlobalStateContext } from '../context/GlobalContextProvider';
-import * as actions from '../context/actions';
+import { GlobalStateContext } from '../context/GlobalContextProvider';
 import { Socket } from 'socket.io-client';
 import { WebSocket } from "../socket/webSocket";
 import { SOCKET_STRINGS } from "../constants/contant";
@@ -10,14 +8,13 @@ import { SOCKET_STRINGS } from "../constants/contant";
 
 const useContact = (socket: Socket) => {
     const stateContext: any = useContext(GlobalStateContext);
-    const dispatch: any = useContext(GlobalDispatchContext);
-    const [selectedUser, setSelectedUser] = useState({});
-    const [privousSelectedUser, setPrivousSelectedUser] = useState<any>({senderId: null, receiverId: null});
+    const [selectedUser, setSelectedUser] = useState<object>({});
+    const [privousSelectedUser, setPrivousSelectedUser] = useState<chatsIDs>({senderId: '', receiverId: ''});
     const [chatHistory, setChatHistory] = useState([]);
 
     const onContactSelect = async (props: user) => {
-        if(props.userId !== privousSelectedUser?.userId){
-            const iDs = {
+        if(props.userId !== privousSelectedUser?.senderId){
+            const iDs: chatsIDs = {
                 senderId : stateContext.authorDetails.userId,
                 receiverId : props.userId,
             };

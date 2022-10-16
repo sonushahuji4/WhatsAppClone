@@ -5,6 +5,7 @@ import * as constants from "../constants/contant";
 import useUser from '../hooks/useUser';
 import { Socket } from "socket.io-client";
 
+
 interface Props {
     socket : Socket;
 }
@@ -31,17 +32,15 @@ const LandingWindow = ({socket}: Props) => {
                     </div>
                     <div className="login-intruction">
                         <ol>
+                            <li>Create Google Account if you don't have one.</li>
+                            <li>Click here to <a href={"https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp"}>Create Google Account</a></li>
                             <li>You need to Signin using your Google Account.</li>
-                            <li>You can anytime logout from the Web.</li>
-                            <li>
-                                Click on Signin button to continue using the Whatsapp Clone.
-                            </li>
                         </ol>
                     </div>
                 
                 </div>
                 <div className="qr-code-login">
-                    <img src={qrCode} alt="not found"></img>
+                    {/* <img src={qrCode} alt="not found"></img> */}
                     <GoogleLogin
                         onSuccess={onLoginSuccess}
                         onError={onLoginError}
