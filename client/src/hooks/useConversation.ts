@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import { Socket } from 'socket.io-client';
 import { GlobalStateContext } from '../context/GlobalContextProvider';
-import { WebSocket } from '../socket.ts/webSocket';
+import { WebSocket } from '../socket/webSocket';
 
 const useConversation = (socket: Socket) => {
     const stateContext: any = useContext(GlobalStateContext);

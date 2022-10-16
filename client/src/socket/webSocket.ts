@@ -18,4 +18,8 @@ export class WebSocket {
             return res;
         });
     }
+
+    public static unSubscribe = (socket: Socket, request: any) => {
+        socket.emit(SOCKET_STRINGS.UNSUBSCRIBE, request);
+    }
 }
