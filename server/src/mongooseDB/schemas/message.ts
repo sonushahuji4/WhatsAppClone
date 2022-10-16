@@ -1,23 +1,15 @@
 import mongoose from "mongoose";
-import { IMessage } from "../../models/message";
+import { message } from "../../models/message";
 
 /** define a schema for a user */
-const messageSchema = new mongoose.Schema<IMessage>({
+const messageSchema = new mongoose.Schema<message>({
     senderId : {
         type: String,
         required: true
     },
-    receiverId : {
-        type: String,
-        required: true
-    },
-    messageId : {
-        type: String,
-        required: false
-    },
     uniqueId : {
         type: String,
-        required: false
+        required: true
     },
     msg : {
         type : String

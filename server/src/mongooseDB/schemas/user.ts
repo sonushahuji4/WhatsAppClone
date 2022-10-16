@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema<IUser>({
         type : String,
         required : true
     }
+},
+{
+    timestamps : true
 });
 
 /** create a actual model in database using the schema  */

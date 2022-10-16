@@ -4,10 +4,9 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import { MongooseService } from './services/mongooseService';
 import { addUserRouter } from './routes/addUser';
-import { messageRouter } from './routes/message';
 import { Server } from 'socket.io';
 import Message from './mongooseDB/schemas/message';
-// import User from './mongooseDB/schemas/user';
+import { IMessage } from "./models/message";
 
 dotenv.config();
 const app: Application = express();
@@ -21,7 +20,6 @@ MongooseService.init();
 
 app.use('/addUser',addUserRouter);
 app.use('/getUsers',addUserRouter);
-app.use('/message',messageRouter);
 
 /** creating a server */
 const server: any = http.createServer(app);
@@ -41,7 +39,7 @@ const getUniqueIds = (params: any) => {
 io.on("connection",(socket) => {
 
     /** create a channel for a private user */
-    socket.on("SUBSCRIBE", async (iDs: any) => {
+    socket.on("SUBSCRIBE", async (iDs: IMessage) => {
 
         let uniqueId = iDs.senderId; /** If senderId is equal to receiverId then allow self chat */
 
@@ -52,12 +50,12 @@ io.on("connection",(socket) => {
 
         socket.join(uniqueId);
         console.log(`Channel Created for ID : ${uniqueId}`);
-        const chatHistory = await Message.find({uniqueId: uniqueId});
+        const chatHistory:IMessage[] = await Message.find({uniqueId: uniqueId});
         io.sockets.in(uniqueId).emit("CHATHISTORY", chatHistory || []);
     });
 
     /** Receive message from client */
-    socket.on("DISPATCH", async (messageObj: any) => {
+    socket.on("DISPATCH", (messageObj: IMessage) => {
 
         let uniqueId = messageObj.senderId; /** If senderId is equal to receiverId then allow self chat */
         
@@ -65,17 +63,16 @@ io.on("connection",(socket) => {
         if(messageObj.senderId !== messageObj.receiverId) {
             uniqueId = getUniqueIds({senderId : messageObj.senderId, receiverId: messageObj.receiverId});
         } 
-
-        messageObj.uniqueId = uniqueId;
-        await (new Message(messageObj)).save();
+        new Message({senderId: messageObj.senderId,uniqueId,msg : messageObj.msg}).save();
         /** Send message to client */
         io.sockets.in(uniqueId).emit("ACKNOWLEDMENT",messageObj);
     });
 
     /** Request to leave the chat */
-    socket.on("UNSUBSCRIBE", (iDs: any) =>{
-        let uniqueId = iDs.senderId;
-        /** Chat with a friend */
+    socket.on("UNSUBSCRIBE", (iDs: IMessage) =>{
+        let uniqueId = iDs.senderId; /** Leave channel if created for self */
+        
+        /** Leave channel if no longer neede */
         if(iDs.senderId !== iDs.receiverId) {
             uniqueId = getUniqueIds({senderId : iDs.senderId, receiverId: iDs.receiverId});
         } 
