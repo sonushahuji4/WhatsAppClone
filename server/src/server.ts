@@ -23,7 +23,7 @@ app.use('/getUsers',addUserRouter);
 
 /** creating a server */
 const server: any = http.createServer(app);
-
+const serverPort = process.env.PORT || 80;
 const io = new Server(server, {
     cors: {
         origin: process.env.CLENT_ENDPOINT,
@@ -81,4 +81,4 @@ io.on("connection",(socket) => {
     });
 })
 
-server.listen(process.env.SERVER_PORT,() => console.log(`Server running on port : ${process.env.SERVER_PORT}`))
+server.listen(serverPort,() => console.log(`Server running on port : ${serverPort}`))
