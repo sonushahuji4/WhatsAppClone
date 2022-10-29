@@ -23,11 +23,9 @@
     "typescript": "^4.8.4"
   },
   "scripts": {
-    "debug": "tsc && set SLS_DEBUG=* && node --inspect node_modules/serverless/bin/serverless offline start --stage npr --apiKey api-key-here",
     "build": "tsc",
-    "pretest": "node ./node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts'",
-    "test": "nyc mocha -r ts-node/register tests/**/*.spec.ts",
-    "dev": "nodemon ./src/server.ts",
-    "start": "node ./dist/server.js"
+    "postinstall": "tsc",
+    "start": "ts-node ./dist/server.js",
+    "dev": "nodemon ./src/server.ts"
   }
 }

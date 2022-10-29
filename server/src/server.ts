@@ -24,6 +24,7 @@ app.use('/getUsers',addUserRouter);
 /** creating a server */
 const server: any = http.createServer(app);
 const serverPort = process.env.PORT || 80;
+
 const io = new Server(server, {
     cors: {
         origin: process.env.CLENT_ENDPOINT,
