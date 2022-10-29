@@ -8,4 +8,4 @@ export const SOCKET_STRINGS = {
  CHAT_HISTORY : 'CHATHISTORY', /** FETCH CHAT HISTORY OF A SELECTED USER */
 }
 
-export const SERVER_API =  'https://whatsapp-server-socket.herokuapp.com'; /*'http://localhost:3001';*/
+export const SERVER_API =  'https://whatsappserverrunning.herokuapp.com'; /*'http://localhost:3001';*/
