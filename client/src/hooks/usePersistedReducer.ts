@@ -1,8 +1,8 @@
-import React, { useReducer, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 
 const usePersistedReducer = (reducer: any, initialState: object, key: string): any => {
     
-    let currentState: object;
+    /*let currentState: object;
 
     try {
         const storedState: any = JSON.parse(window.localStorage.getItem('state') as any);
@@ -10,7 +10,7 @@ const usePersistedReducer = (reducer: any, initialState: object, key: string): a
         currentState = storedState && storedState[key] && storedStateExpiresIn && Date.now() < storedStateExpiresIn ? storedState[key] : initialState;
     } catch(error) {
         currentState = initialState;
-    }
+    }*/
 
     const [state, dispatch]: any = useReducer<any>(reducer, initialState);
 

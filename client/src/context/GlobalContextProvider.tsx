@@ -1,7 +1,6 @@
-import React, { useReducer } from "react";
+import React from "react";
 import { reducer, initialState } from './reducer';
 import usePersistedReducer from "../hooks/usePersistedReducer";
-import * as actions from './actions';
 
 interface Action {
     type: string;

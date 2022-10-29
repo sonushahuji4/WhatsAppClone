@@ -1,5 +1,4 @@
 import whatsappIcon from "../static/images/whatsappIcon.svg";
-import qrCode from "../static/images/qrcode.jpg";
 import { GoogleLogin } from "@react-oauth/google";
 import * as constants from "../constants/contant";
 import useUser from '../hooks/useUser';

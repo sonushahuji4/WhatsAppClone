@@ -36,7 +36,7 @@ const useUser = (socket: Socket) => {
     }
 
     const onLoginError = () => {
-        throw ('Login failed');
+        throw ({err:'Login failed'});
     }
 
     return{

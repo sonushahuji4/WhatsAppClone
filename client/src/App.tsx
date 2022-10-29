@@ -10,10 +10,11 @@ import { GlobalStateContext } from './context/GlobalContextProvider';
 import { SOCKET_STRINGS } from './constants/contant';
 import WhatsAppWeb from './components/shared/whatsAppWeb';
 import { message } from './models/user';
+import { SERVER_API } from '../src/constants/contant';
 
 const App = () => {
   const clientId = '894720398292-60h39t5cbgnk1ens4p7p21mtgrb3fmk9.apps.googleusercontent.com';
-  const socket: Socket = io('http://localhost:3001/',{ transports: ['websocket']});
+  const socket: Socket = io(`${SERVER_API}/`,{ transports: ['websocket']});
   const stateContext: any = useContext(GlobalStateContext);
   const {selectedUser, onContactSelect, chatHistory, setChatHistory}: any = useContact(socket);
 

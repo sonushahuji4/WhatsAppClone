@@ -1,20 +1,19 @@
 import axios from 'axios';
-import { chatsIDs, user } from '../models/user';
+import { user } from '../models/user';
+import { SERVER_API } from '../constants/contant';
 // import dotenv from 'dotenv';
 // dotenv.config()
 
 export class APIServices {
 
-    public static URL = 'http://localhost:3001';
-
     public static addUser = async (porps: user) => {
         try {
             const promises = [];
-            promises.push(axios.post(`${this.URL}/addUser`,porps));
-            promises.push(axios.get(`${this.URL}/getUsers`));
+            promises.push(axios.post(`${SERVER_API}/addUser`,porps));
+            promises.push(axios.get(`${SERVER_API}/getUsers`));
             const [user, usersList]: any = await Promise.all(promises);
-            if(user.status != 200 && !user.data || usersList.status != 200 || !usersList.data){
-                throw ('Error while calling getUsers API');
+            if((user.status !== 200 && !user.data) || (usersList.status !== 200 || !usersList.data)){
+                throw ({err:'Error while calling getUsers API'});
             }
             return [user.data, usersList.data];
 
@@ -26,9 +25,9 @@ export class APIServices {
 
     public static getUsers = async () => {
         try {
-            const result = await axios.get(`${this.URL}/getUsers`);
-            if(result.status != 200 || !result.data){
-                throw ('Error while calling getUsers API');
+            const result = await axios.get(`${SERVER_API}/getUsers`);
+            if(result.status !== 200 || !result.data){
+                throw ({err:'Error while calling getUsers API'});
             }
             return result.data;
         } catch (error: any) {

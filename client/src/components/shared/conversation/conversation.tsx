@@ -1,9 +1,6 @@
-import userImage from '../static/images/markZakarburk.jpg';
-import emojiIcon from '../static/images/emojiIcon.svg';
-// import { messagesList } from '../mockData';
 import ConversationHeader from './conversationHeader';
 import { GlobalStateContext } from '../../../context/GlobalContextProvider';
-import { useContext, useEffect, useState, useRef } from 'react';
+import { useContext } from 'react';
 import { Socket} from 'socket.io-client';
 import ConversationBody from './conversationBody';
 import ConversationFooter from './conversatioFooter';
