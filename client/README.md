@@ -25,7 +25,7 @@ This is a WhatsApp web client Application, which supports basic features of What
 
 ## ScreenShots
 - Login Page
-<img src="/src/static/images/Loginss.png" alt="Project logo">
+<img src="./src/static/images/Loginss.png" alt="Project logo">
 
 - Home Page
 <img src="./src/static/images/chatview.png" alt="Project logo">
